@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!-- 관리자단 헤더 시작 header.jsp -->
 <!DOCTYPE html>
 <html lang="ko">
@@ -130,7 +131,7 @@ if("${msg}"!="") { //RedirectAttributes 로 컨트롤러에서 보내온 값을 
               <li class="nav-item">
                 <a href="<c:url value='/' />admin/board/list_board.do?bbsId=BBSMSTR_BBBBBBBBBBBB" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>갤러리 관리</p>
+                  <p>겔러리 관리</p>
                 </a>
               </li>
             </ul>

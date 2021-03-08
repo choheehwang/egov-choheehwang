@@ -67,6 +67,9 @@ public class MemberTest {
 		//memberVO에 set으로 값을 입력한 이후 DB에 인서트함.
 		//emplyr_id는 기본키이기 때문에 중복허용하지 않게 처리(아래)
 		PageVO pageVO = new PageVO();
+		pageVO.setPage(1);
+		pageVO.setPerPageNum(10);
+		pageVO.setQueryPerPageNum(10000);//JUnit테스트 전용으로 쿼리리 Limit 두번째 인자값을 10000정도로 해서 에러 않나게 처리
 		List<EmployerInfoVO> memberList = memberService.selectMember(pageVO);
 		memberVO.setEMPLYR_ID("user_" + (memberList.size()+1));
 		memberVO.setORGNZT_ID("ORGNZT_0000000000000");//외래키이기때문에
@@ -82,7 +85,7 @@ public class MemberTest {
 		memberVO.setHOUSE_ADRES("집주소");
 		memberVO.setGROUP_ID("GROUP_00000000000000");//외래키이기때문에 부모테이블에 있는값을 넣어야 함.
 		memberVO.setEMPLYR_STTUS_CODE("P");//회원상태코드 P-활성,S-비활성
-		memberVO.setESNTL_ID("USRCNFRM_" + (memberList.size()+1));//고유ID이기때문에 중복되면 안 됨.
+		memberVO.setESNTL_ID("USRCNFRM_" + (memberList.size()+1));//고유ID이기때문에 중복되면 않됨
 		memberService.insertMember(memberVO);
 	}
 	@Test

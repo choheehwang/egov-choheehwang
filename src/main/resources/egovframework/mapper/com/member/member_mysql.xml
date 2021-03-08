@@ -25,7 +25,6 @@ where
 		EMPLYR_ID LIKE CONCAT('%',#{search_keyword},'%')
 		or
 		USER_NM LIKE CONCAT('%',#{search_keyword},'%')
-
 	</if>
 	<if test="search_type == 'user_id'.toString() ">
 		EMPLYR_ID LIKE CONCAT('%',#{search_keyword},'%')

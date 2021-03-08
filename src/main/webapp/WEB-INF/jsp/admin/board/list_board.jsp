@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://egovframework.gov/ctl/ui" prefix="ui" %>
 <%@ include file="../include/header.jsp" %>
 
 <!-- 대시보드 본문 Content Wrapper. Contains page content -->
@@ -25,7 +26,7 @@
     <!-- 본문내용 Main content -->
     <section class="content">
       <div class="container-fluid">
-
+        
         <div class="row"><!-- 부트스트랩의 디자인 클래스 row -->
           <div class="col-12"><!-- 그리드시스템중 12가로칼럼 width:100% -->
             <div class="card"><!-- 부트스트랩의 카드 클래스:네모난 디자인 -->
@@ -33,7 +34,7 @@
                 <h3 class="card-title">게시물 검색</h3>
 
                 <div class="card-tools">
-
+                  
                   <form name="search_form" action="<c:url value='/admin/board/list_board.do' />" method="get">
                   	<input type="hidden" name="bbsId" value="<c:out value='${boardVO.bbsId}'/>" />
 					<input type="hidden" name="nttId"  value="0" />
@@ -46,8 +47,8 @@
                     <div>
                         <select name="searchCnd" class="form-control">
                             <option value="0" <c:if test="${searchVO.searchCnd == '0'}">selected="selected"</c:if> >제목</option>
-							<option value="1" <c:out value="${(searchVO.searchCnd=='1')?'selected':'' }" /> >내용</option>
-							<option value="2" <c:if test="${searchVO.searchCnd == '2'}">selected="selected"</c:if> >작성자</option>
+							<option value="1" <c:out value="${(searchVO.searchCnd=='1')?'selected':'' }" /> >내용</option>             
+							<option value="2" <c:if test="${searchVO.searchCnd == '2'}">selected="selected"</c:if> >작성자</option>            
                         </select>
                     </div>
                     <div>
@@ -60,7 +61,7 @@
                     </div>
                   </div>
                   </form>
-
+                  
                 </div>
               </div>
               <!-- /.card-header -->
@@ -76,6 +77,9 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <c:if test="${fn:length(resultList) == 0}">
+                  	<tr><td class="text-center" colspan="5">조회된 값이 없습니다.</td></tr>
+                  </c:if>
                   <c:forEach items="${resultList}" var="result" varStatus="status">
                     <tr>
                       <td>
@@ -106,18 +110,18 @@
                       <td><span class="badge bg-danger">${result.inqireCo}</span></td>
                       <!-- 권한표시는 부트스트랩 뺏지 클래스 사용 -->
                     </tr>
-                    </c:forEach>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
-
+            
             </div>
             <!-- /.card -->
-
+            
             <!-- 버튼영역 시작 -->
               <div class="card-body">
-              	<a href="<c:url value='/admin/board/insert_board.do' />" class="btn btn-primary float-right">글작성</a>
+              	<a href="<c:url value='/admin/board/insert_board_form.do?bbsId=${boardVO.bbsId}' />" class="btn btn-primary float-right">글작성</a>
               	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기(위) -->
               	<!-- btn클래스명이 버튼모양으로 변경, btn-primary클래스명은 버튼색상을 변경하는역할 -->
               	<!-- 
@@ -129,24 +133,22 @@
               	 -->
               </div>
             <!-- 버튼영역 끝 -->
-
+              
             <!-- 페이징처리 시작 -->
             <div class="pagination justify-content-center">
             	<ul class="pagination">
             	 <ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_noticeList" /> 
            	    </ul>
             </div>
-	  		<!-- 페이징처리 끝 -->     
-
+	  		<!-- 페이징처리 끝 --> 
           </div>
         </div>
-
+        
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
 
 <%@ include file="../include/footer.jsp" %>
 <script>

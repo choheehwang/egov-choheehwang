@@ -117,7 +117,7 @@
 	            	 </li>
 	            	 <!-- 위 이전게시물링크 -->
             	 </c:if>
-
+            	 
             	 <!-- jstl for문이고, 향상된 for문이아닌 고전for문으로 시작값, 종료값 var변수idx는 인덱스값이 저장되어 있습니다. -->
             	 <c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" var="idx">
             	 	<li class='paginate_button page-item <c:out value="${idx==pageVO.page?'active':''}" />'>
@@ -132,7 +132,7 @@
             	 </c:if>
             	 </ul>
             </div>
-	  		<!-- 페이징처리 끝 -->     
+	  		<!-- 페이징처리 끝 -->       
             
           </div>
         </div>
